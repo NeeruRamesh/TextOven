@@ -8,11 +8,15 @@ import { AuthService } from '../../services/auth.service';
 })
 export class NavbarComponent implements OnInit {
 
+  public currentUser: any = null;
+
   constructor(
-    private auth: AuthService
+    public auth: AuthService
   ) { }
 
   ngOnInit() {
+    this.auth.currentUser.subscribe(user => {
+      this.currentUser = user;
+    })
   }
-
 }
