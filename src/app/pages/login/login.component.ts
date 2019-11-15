@@ -57,7 +57,7 @@ export class LoginComponent implements OnInit, OnDestroy {
         })
       );
     } else {
-      const failedLoginAlert = new Alert('Your email or password were inavalid, try again.', AlertType.Danger);
+      const failedLoginAlert = new Alert('Invalid email or password, try again.', AlertType.Danger);
       this.loadingService.isLoading.next(false);
       this.alertService.alerts.next(failedLoginAlert);
     }
