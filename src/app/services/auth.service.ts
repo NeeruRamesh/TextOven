@@ -3,8 +3,10 @@ import { Router } from '@angular/router';
 import { User } from '../classes/user';
 import { Alert } from './../classes/alert';
 import { AlertService } from './alert.service';
-import { Observable, of } from 'rxjs';
+import { Observable, of, from } from 'rxjs';
 import { AlertType } from './../enums/alert-type.enum';
+import { AngularFireAuth } from 'angularfire2/auth';
+import { AngularFirestore, AngularFirestoreDocument } from 'angularfire2/firestore';
 import 'rxjs/add/observable/of';
 
 
@@ -15,25 +17,53 @@ export class AuthService {
 
   constructor(
     private router: Router,
-    private alertService: AlertService
+    private alertService: AlertService,
+    private afAuth: AngularFireAuth,
+    private db: AngularFirestore
   ) {
-    // TODO fetch the user from the Firebase backend, then set the user
-    this.currentUser = of(null);
+
+    this.currentUser = this.afAuth.authState
+      .switchMap((user) => {
+        if (user) {
+          return this.db.doc<User>(`users/${user.uid}`).valueChanges();
+        } else {
+          return Observable.of(null);
+        }
+      })
   }
 
   public signup(firstName: string, lastName: string, email: string, password: string): Observable<boolean> {
-    // TODO call Firebase signup function
-    return of(true);
+    return Observable.from(
+      this.afAuth.auth.createUserWithEmailAndPassword(email, password)
+        .then((user) => {
+          const userRef: AngularFirestoreDocument<User> = this.db.doc(`users/${user.user.uid}`);
+          const updatedUser = {
+            id: user.user.uid,
+            email: user.user.email,
+            firstName,
+            lastName,
+            photoUrl: 'https://firebasestorage.googleapis.com/v0/b/text-oven.appspot.com/o/dog.jpg?alt=media&token=b3855906-84ae-4445-95ec-eec36d321dcf'
+          }
+
+          userRef.set(updatedUser);
+          return true;
+        })
+        .catch((err) => false)
+    );
   }
 
   public login(email: string, password: string): Observable<boolean> {
-    // TODO call Firebase login function
-    return of(true);
+    return Observable.from(
+      this.afAuth.auth.signInWithEmailAndPassword(email, password)
+        .then((user) => true)
+        .catch((err) => false)
+    );
   }
 
   public logout(): void {
-    // TODO call Firebase logout function
-    this.router.navigate(['/login']);
-    this.alertService.alerts.next(new Alert('You have been signed out.'));
+    this.afAuth.auth.signOut().then(() => {
+      this.router.navigate(['/login']);
+      this.alertService.alerts.next(new Alert('You have been signed out.'));
+    });
   }
 }
