@@ -1,12 +1,11 @@
-  
-@import "../../../../../styles/variables";
+  @import "../../../../../styles/variables";
 
-.chatroom-list {
-    border-right: 2px solid $light-grey;
-    overflow-y: scroll;
+  .chatroom-list {
+      border-right: 2px solid $light-grey;
+      overflow-y: hidden; //scroll changed to hidden. Try auto later.
 
-    .chatroom-list-item {
-        border-bottom: 1px solid $light-grey;
-        padding: 1em;
-    }
-}
+      .chatroom-list-item {
+          border-bottom: 1px solid $light-grey;
+          padding: 1em;
+      }
+  }

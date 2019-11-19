@@ -7,15 +7,23 @@
         margin-right: 1em;
         height: 50px;
         width: 50px;
+
+        img {
+            height: 50px;
+            width: 50px;
+        }
     }
+
     .name {
         text-decoration: underline;
         font-weight: 600;
     }
+
     .timestamp {
         margin-bottom: 1.5em;
         color: darken($light-grey, 15%);
     }
+
     .message {
         font-size: 1.2em;
     }
