@@ -37,6 +37,7 @@ import { ChatroomTitleBarComponent } from './pages/chat/components/chatroom-titl
 import { ChatMessageComponent } from './pages/chat/components/chat-message/chat-message.component';
 import { ChatroomWindowComponent } from './pages/chat/components/chatroom-window/chatroom-window.component';
 import { ProfileComponent } from './pages/profile/profile.component';
+import { EditProfileComponent } from './pages/edit-profile/edit-profile.component';
 
 
 
@@ -52,7 +53,8 @@ import { ProfileComponent } from './pages/profile/profile.component';
     ChatroomTitleBarComponent,
     ChatMessageComponent,
     ChatroomWindowComponent,
-    ProfileComponent
+    ProfileComponent,
+    EditProfileComponent
   ],
   imports: [
     BrowserModule,
