@@ -18,6 +18,7 @@ import { NgxLoadingModule } from 'ngx-loading';
 
 // Guards
 import { AuthGuard } from './guards/auth.guard';
+import { IsOwnerGuard } from './guards/is-owner.guard';
 
 // Services
 import { AlertService } from './services/alert.service';
@@ -73,7 +74,8 @@ import { EditProfileComponent } from './pages/edit-profile/edit-profile.componen
     LoadingService,
     AuthService,
     AuthGuard,
-    ChatroomService
+    ChatroomService,
+    IsOwnerGuard
   ],
   bootstrap: [AppComponent]
 })

@@ -1,5 +1,5 @@
 <div class="chat-message d-flex">
-    <div class="image-wrapper">
+    <div class="image-wrapper" [routerLink]="'/profile/' + message.sender.id">
         <img [src]="message.sender.photoUrl" class="rounded-circle">
     </div>
     <div class="bubble d-flex flex-column">
