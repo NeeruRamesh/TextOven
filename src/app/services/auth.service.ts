@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { User } from '../classes/user';
+import { User } from '../interfaces/user';
 import { Alert } from './../classes/alert';
 import { AlertService } from './alert.service';
 import { Observable, of, from } from 'rxjs';
@@ -45,7 +45,9 @@ export class AuthService {
             email: user.user.email,
             firstName,
             lastName,
-            photoUrl: 'https://firebasestorage.googleapis.com/v0/b/text-oven.appspot.com/o/dog.jpg?alt=media&token=b3855906-84ae-4445-95ec-eec36d321dcf'
+            photoUrl: 'https://firebasestorage.googleapis.com/v0/b/text-oven.appspot.com/o/dog.jpg?alt=media&token=b3855906-84ae-4445-95ec-eec36d321dcf',
+            quote: 'A room without books is like a body without a soul.',
+            bio: 'Under Construction...'
           }
 
           userRef.set(updatedUser);
