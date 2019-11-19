@@ -3,27 +3,29 @@ import {
   OnInit
 }
 
-from '@angular/core';
+  from '@angular/core';
+import { ChatroomService } from 'src/app/services/chatroom.service';
 
-@Component( {
-    selector: 'app-chat-input',
-    templateUrl: './chat-input.component.html',
-    styleUrls: ['./chat-input.component.scss']
-  }
+@Component({
+  selector: 'app-chat-input',
+  templateUrl: './chat-input.component.html',
+  styleUrls: ['./chat-input.component.scss']
+}
 
 ) export class ChatInputComponent implements OnInit {
 
-  public newMessageText: string='';
+  public newMessageText: string = '';
 
-  constructor() {}
+  constructor(
+    private chatroomService: ChatroomService
+  ) { }
 
-  ngOnInit() {}
+  ngOnInit() { }
 
   public submit(message: string): void {
-    // TODO save text to Firebase backend
-    console.log('New Message: ', message);
 
+    this.chatroomService.createMessage(message);
     // reset input
-    this.newMessageText='';
+    this.newMessageText = '';
   }
 }
