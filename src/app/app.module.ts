@@ -23,6 +23,7 @@ import { AuthGuard } from './guards/auth.guard';
 import { AlertService } from './services/alert.service';
 import { AuthService } from './services/auth.service';
 import { LoadingService } from './services/loading.service';
+import { ChatroomService } from './services/chatroom.service';
 
 // Components
 import { AppComponent } from './app.component';
@@ -35,6 +36,7 @@ import { ChatroomListComponent } from './pages/chat/components/chatroom-list/cha
 import { ChatroomTitleBarComponent } from './pages/chat/components/chatroom-title-bar/chatroom-title-bar.component';
 import { ChatMessageComponent } from './pages/chat/components/chat-message/chat-message.component';
 import { ChatroomWindowComponent } from './pages/chat/components/chatroom-window/chatroom-window.component';
+
 
 
 @NgModule({
@@ -66,7 +68,8 @@ import { ChatroomWindowComponent } from './pages/chat/components/chatroom-window
     AlertService,
     LoadingService,
     AuthService,
-    AuthGuard
+    AuthGuard,
+    ChatroomService
   ],
   bootstrap: [AppComponent]
 })
