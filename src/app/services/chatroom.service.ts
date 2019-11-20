@@ -3,8 +3,6 @@ import { Observable, BehaviorSubject } from 'rxjs';
 import { AngularFirestore, AngularFirestoreDocument } from 'angularfire2/firestore';
 import { LoadingService } from './loading.service';
 import { AuthService } from './auth.service';
-import { ValueConverter } from '@angular/compiler/src/render3/view/template';
-import { timestamp } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -30,10 +28,8 @@ export class ChatroomService {
     this.selectedChatroomMessages = this.changeChatroom.switchMap(chatroomId => {
       if (chatroomId) {
         return db.collection(`chatrooms/${chatroomId}/messages`, ref => {
-          return ref.orderBy('createdAt', 'desc').limit(100);
-        })
-          .valueChanges()
-        // .map(arr => arr.reverse);
+          return ref.orderBy('createdAt', 'asc').limit(100);
+        }).valueChanges();
       }
       return Observable.of(null);
     })

@@ -24,7 +24,7 @@ export class EditProfileComponent implements OnInit, OnDestroy {
   public userId: string = '';
   private subscriptions: Subscription[] = [];
   public uploadPercent: number = 0;
-  public getDownloadUrl: Observable<string> | null = null;
+  public downloadUrl: Observable<string> | null = null;
 
   constructor(
     private auth: AuthService,
@@ -79,8 +79,8 @@ export class EditProfileComponent implements OnInit, OnDestroy {
   public save(): void {
     let photo;
 
-    if (this.getDownloadUrl) {
-      photo = this.getDownloadUrl;
+    if (this.downloadUrl) {
+      photo = this.downloadUrl;
     } else {
       photo = this.currentUser.photoUrl;
     }
