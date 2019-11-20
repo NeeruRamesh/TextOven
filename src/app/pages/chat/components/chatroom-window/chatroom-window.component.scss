@@ -1,13 +1,13 @@
 @import '../../../../../styles/variables.scss';
 
 .message-wrapper {
-    overflow-y: hidden; //scroll changed to hidden. Try auto later.
+    overflow-y: auto; //scroll changed to auto. 
 }
 
 .select-room {
     .select-room-message {
         width: 30%;
-        height: 7%;
+        height: 6%;
         margin-bottom: 10%;
         border: 1px solid $light-grey;
         display: flex;
