@@ -63,7 +63,6 @@ export class ChatroomWindowComponent implements OnInit, OnDestroy, AfterViewChec
   constructor(
     private route: ActivatedRoute,
     private chatroomService: ChatroomService,
-    private loadingService: LoadingService
   ) {
     this.subscriptions.push(
       this.chatroomService.selectedChatroom.subscribe(chatroom => {
